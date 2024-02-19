@@ -1,12 +1,17 @@
 /* audio-player.page.scss */
 
-.black-background {
-    background-color: black;
-    ion-title,
-    ion-label {
-      color: white; /* Thiết lập màu chữ cho các phần tử ion-title và ion-label */
-    }
-  
-    /* Thêm các quy tắc CSS khác tùy thuộc vào yêu cầu của bạn */
+ion-header {
+    color: black ; /* Đặt màu nền cho ion-header */
   }
+  
+  ion-toolbar {
+    color: black; /* Đặt màu nền cho ion-toolbar bên trong ion-header */
+  }
+  
+  ion-title {
+    color:  white; /* Đặt màu chữ cho ion-title */
+}
+.ion-text-center {
+    color: white;
+}
   
