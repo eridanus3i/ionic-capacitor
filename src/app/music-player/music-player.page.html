@@ -37,6 +37,10 @@
           <ion-icon slot="end" name="musical-note"></ion-icon>
         </ion-range>
       </ion-col>
+      <div>
+        <p>{{currentTime}}</p>
+        <p>{{totalDuration}}</p>
+      </div>
       <ion-col size="12" class="ion-text-center">
         <ion-button fill="clear" (click)="forwardToFirst()" >
           <ion-icon slot="icon-only" name="play-skip-back-outline"></ion-icon>
