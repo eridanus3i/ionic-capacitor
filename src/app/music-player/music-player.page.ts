@@ -68,6 +68,7 @@ export class MusicPlayerPage implements OnInit {
   isPlaying = false;
   progress = 0;
   currentTime = "0:00"; // Current playback time
+  totalDuration = "0:00"; // Total duration of the track
 
   @ViewChild("range", { static: false }) range!: IonRange;
 
@@ -125,6 +126,9 @@ export class MusicPlayerPage implements OnInit {
     const seek = this.player.seek();
     this.progress = (seek / this.player.duration()) * 100 || 0;
     this.currentTime = this.formatTime(Math.round(seek)); // Format current time
+    this.totalDuration = this.formatTime(Math.round(this.player?.duration() || 0)); // Format total duration
+    // console.log("updateProgress", this.progress, this.currentTime, this.totalDuration);
+    
     if (this.isPlaying) {
       requestAnimationFrame(() => this.updateProgress());
     }
@@ -134,6 +138,16 @@ export class MusicPlayerPage implements OnInit {
     const remainderSeconds = seconds % 60;
     const displaySeconds = remainderSeconds < 10 ? `0${remainderSeconds}` : remainderSeconds;
     return `${minutes}:${displaySeconds}`;
+  }
+
+  forwardToFirst() {
+    //select the first track
+    this.start(this.playlist[0]);
+  }
+
+  forwardToLast() {
+    //select the last track
+    this.start(this.playlist[this.playlist.length - 1]);
   }
 
 }
