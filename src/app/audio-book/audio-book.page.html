@@ -7,8 +7,13 @@
 </ion-header>
 
 <ion-content>
-  <button (click)="preloadAudio()">Preload Audio</button>
-  <button (click)="playAudio()">Play Audio</button>
-  <button (click)="stopAudio()">Stop Audio</button>
-  <button (click)="unloadAudio()">Unload Audio</button>
+  <ion-list>
+    <ion-item *ngFor="let audio of audioList">
+      <ion-label>{{ audio.name }}</ion-label>
+      <!-- <ion-button (click)="preloadAudio(audio)">Preload</ion-button> -->
+      <ion-button (click)="playAudio(audio)">Play</ion-button>
+      <ion-button (click)="stopAudio(audio)">Stop</ion-button>
+      <!-- <ion-button (click)="unloadAudio(audio)">Unload</ion-button> -->
+    </ion-item>
+  </ion-list>
 </ion-content>
