@@ -67,8 +67,8 @@ export class MusicPlayerPage implements OnInit {
   player: Howl | undefined;
   isPlaying = false;
   progress = 0;
-  currentTime = "0:00"; // Current playback time
-  totalDuration = "0:00"; // Total duration of the track
+  public currentTime = "0:00"; // Current playback time
+  public totalDuration = "0:00"; // Total duration of the track
 
   @ViewChild("range", { static: false }) range!: IonRange;
 
@@ -93,6 +93,13 @@ export class MusicPlayerPage implements OnInit {
       },
     });
     this.player.play();
+  }
+
+  restart() {
+    if (this.player) {
+      this.player.stop();
+      this.player.play();
+    }
   }
 
   togglePlayer(pause: boolean) {
