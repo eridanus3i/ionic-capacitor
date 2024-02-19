@@ -18,7 +18,7 @@ export class AudioBookPage implements OnInit {
     try {
       await NativeAudio.preload({
         assetId: 'fire',
-        assetPath: 'assets/fire.mp3', // Adjust the path as per your project structure
+        assetPath: 'chapter1.mp3', // Adjust the path as per your project structure
         audioChannelNum: 1,
         isUrl: false
       });
