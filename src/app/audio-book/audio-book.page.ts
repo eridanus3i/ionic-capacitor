@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpeechRecognition } from '@capacitor-community/speech-recognition';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { NativeAudio } from '@capacitor-community/native-audio'
-
+import { NativeAudio } from '@capacitor-community/native-audio';
 
 @Component({
   selector: 'app-audio-book',
@@ -10,97 +7,79 @@ import { NativeAudio } from '@capacitor-community/native-audio'
   styleUrls: ['./audio-book.page.scss'],
 })
 export class AudioBookPage implements OnInit {
-  audioList: any[] | undefined 
+  audioList: any[] = [];
+  audioDuration: number | undefined;
+  currentTime: number = 0;
+  currentAudioIndex: number | undefined;
+  currentAudioPath: string | undefined;
 
-  constructor() {
-  }
-
+  constructor() {}
 
   async preloadAudio(audio: any) {
     try {
       await NativeAudio.preload({
-        assetId: 'fire',
-        assetPath: audio.path, // Adjust the path as per your project structure
+        assetId: audio.path, // Use audio path as assetId
+        assetPath: audio.path,
         audioChannelNum: 1,
         isUrl: false
+      }).then(async () => {
+        console.log('Audio preloaded successfully');
+        // const durationResult = await NativeAudio.getDuration({ assetId: audio.path }); // Use audio path
+        // this.audioDuration = durationResult.duration;
+        console.log('Audio duration:', this.audioDuration);
       });
-      console.log('Audio preloaded successfully');
     } catch (error) {
       console.error('Error preloading audio:', error);
     }
   }
 
-
   ngOnInit() {
     this.audioList = [
-      {
-        name: 'Chapter 1',
-        path: 'chapter1.mp3'
-      },
-      {
-        name: 'Chapter 2',
-        path: 'chapter2.mp3'
-      },
-      {
-        name: 'Chapter 3',
-        path: 'chapter3.mp3'
-      },
-      {
-        name: 'Chapter 4',
-        path: 'chapter4.mp3'
-      },
-      {
-        name: 'Chapter 5',
-        path: 'chapter5.mp3'
-      },
-      {
-        name: 'Chapter 6',
-        path: 'chapter6.mp3'
-      },
-      {
-        name: 'Chapter 7',
-        path: 'chapter7.mp3'
-      },
-      {
-        name: 'Chapter 8',
-        path: 'chapter8.mp3'
-      },
-      {
-        name: 'Chapter 9',
-        path: 'chapter9.mp3'
-      },
-      {
-        name: 'Chapter 10',
-        path: 'chapter10.mp3'
-      }
-    ]
-    
+      { name: 'Chapter 1', path: 'chapter1.mp3' },
+      { name: 'Chapter 2', path: 'chapter2.mp3' },
+      { name: 'Chapter 3', path: 'chapter3.mp3'},
+      { name: 'Chapter 4', path: 'chapter4.mp3'},
+      { name: 'Chapter 5', path: 'chapter5.mp3'},
+      { name: 'Chapter 6', path: 'chapter6.mp3'},
+      { name: 'Chapter 7', path: 'chapter7.mp3'},
+      { name: 'Chapter 8', path: 'chapter8.mp3'},
+      { name: 'Chapter 9', path: 'chapter9.mp3'},
+      { name: 'Chapter 10', path: 'chapter10.mp3'}
+      // Add other chapters as needed
+    ];
   }
 
   async playAudio(audio: any) {
-    await this.unloadAudio(audio);
+    this.currentAudioIndex = this.audioList.indexOf(audio);
+    await this.unloadAudio();
     await this.preloadAudio(audio);
+    const path = `assets/sounds/${audio.path}`
+    this.currentAudioPath = path; // Update currentAudioPath
     try {
-      await NativeAudio.play({ assetId: 'fire' });
+      // await NativeAudio.play({ assetId: audio.path }); // Use audio path
       console.log('Audio played successfully');
     } catch (error) {
       console.error('Error playing audio:', error);
     }
   }
 
-  async stopAudio(audio: any) {
+  async stopAudio() {
     try {
-      await NativeAudio.stop({ assetId: 'fire' });
-      console.log('Audio stopped successfully');
+      if (this.currentAudioPath) {
+        await NativeAudio.stop({ assetId: this.currentAudioPath });
+        console.log('Audio stopped successfully');
+      }
     } catch (error) {
       console.error('Error stopping audio:', error);
     }
   }
 
-  async unloadAudio(audio: any) {
+  async unloadAudio() {
     try {
-      await NativeAudio.unload({ assetId: 'fire' });
-      console.log('Audio unloaded successfully');
+      if (this.currentAudioPath) {
+        await NativeAudio.unload({ assetId: this.currentAudioPath });
+        console.log('Audio unloaded successfully');
+      }
     } catch (error) {
       console.error('Error unloading audio:', error);
     }

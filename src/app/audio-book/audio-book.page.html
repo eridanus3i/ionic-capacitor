@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Speech Recognition
+      Audio Player with Seek Bar
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,10 +10,8 @@
   <ion-list>
     <ion-item *ngFor="let audio of audioList">
       <ion-label>{{ audio.name }}</ion-label>
-      <!-- <ion-button (click)="preloadAudio(audio)">Preload</ion-button> -->
       <ion-button (click)="playAudio(audio)">Play</ion-button>
-      <ion-button (click)="stopAudio(audio)">Stop</ion-button>
-      <!-- <ion-button (click)="unloadAudio(audio)">Unload</ion-button> -->
     </ion-item>
   </ion-list>
+  <audio controls="controls" #audioPlayer [src]="currentAudioPath" type="audio/mpeg"></audio>
 </ion-content>
