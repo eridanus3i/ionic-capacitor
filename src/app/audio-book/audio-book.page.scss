@@ -1,0 +1,18 @@
+/* audio-book.page.scss */
+
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* chiều cao tương đương với viewport height */
+}
+
+.audio {
+  text-align: center;
+  // position: fixed;
+}
+
+audio {
+  width: 100%;
+  max-width: 300px; /* điều chỉnh kích thước theo ý muốn */
+}
