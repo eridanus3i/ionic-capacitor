@@ -1,17 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Audio Player with Seek Bar
-    </ion-title>
+    <ion-title> Audio Player</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="audio">
+    <audio
+      controls="controls"
+      #audioPlayer
+      [src]="currentAudioPath"
+      type="audio/mpeg"
+    ></audio>
+  </div>
+
   <ion-list>
     <ion-item *ngFor="let audio of audioList">
-      <ion-label>{{ audio.name }}</ion-label>
-      <ion-button (click)="playAudio(audio)">Play</ion-button>
+      <div (click)="playAudio(audio)">
+        <ion-label>{{ audio.name }}</ion-label>
+      </div>
+      <!-- <ion-button (click)="playAudio(audio)">Play</ion-button> -->
     </ion-item>
   </ion-list>
-  <audio controls="controls" #audioPlayer [src]="currentAudioPath" type="audio/mpeg"></audio>
 </ion-content>
