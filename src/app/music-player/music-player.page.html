@@ -1,6 +1,9 @@
 <ion-header >
   <ion-toolbar >
     <ion-title> Ionic Audio Player </ion-title>
+    <ion-button>
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -38,6 +41,9 @@
         <ion-button fill="clear" (click)="prev()" >
           <ion-icon slot="icon-only" name="play-skip-back-outline"></ion-icon>
         </ion-button>
+        <ion-button fill="clear" (click)="prev()" >
+          <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+        </ion-button>
         <ion-button
           fill="clear"
           (click)="togglePlayer(false)"
@@ -53,7 +59,9 @@
         >
           <ion-icon slot="icon-only" name="pause-outline"></ion-icon>
         </ion-button>
-
+        <ion-button fill="clear" (click)="prev()" >
+          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+        </ion-button>
         <ion-button fill="clear" (click)="next()" >
           <ion-icon
             slot="icon-only"
