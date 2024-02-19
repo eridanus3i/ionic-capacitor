@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'audio-book',
+    loadChildren: () => import('./audio-book/audio-book.module').then( m => m.AudioBookPageModule)
+  },
 ];
 
 @NgModule({
