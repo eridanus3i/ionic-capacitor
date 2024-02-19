@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NativeAudio } from '@capacitor-community/native-audio';
 
 @Component({
@@ -7,13 +7,15 @@ import { NativeAudio } from '@capacitor-community/native-audio';
   styleUrls: ['./audio-book.page.scss'],
 })
 export class AudioBookPage implements OnInit {
+  @ViewChild('audioPlayer') audioPlayer: any; // ViewChild to access the audio element
+
   audioList: any[] = [];
   audioDuration: number | undefined;
   currentTime: number = 0;
   currentAudioIndex: number | undefined;
   currentAudioPath: string | undefined;
 
-  constructor() {}
+  constructor() { }
 
   async preloadAudio(audio: any) {
     try {
@@ -37,14 +39,14 @@ export class AudioBookPage implements OnInit {
     this.audioList = [
       { name: 'Chapter 1', path: 'chapter1.mp3' },
       { name: 'Chapter 2', path: 'chapter2.mp3' },
-      { name: 'Chapter 3', path: 'chapter3.mp3'},
-      { name: 'Chapter 4', path: 'chapter4.mp3'},
-      { name: 'Chapter 5', path: 'chapter5.mp3'},
-      { name: 'Chapter 6', path: 'chapter6.mp3'},
-      { name: 'Chapter 7', path: 'chapter7.mp3'},
-      { name: 'Chapter 8', path: 'chapter8.mp3'},
-      { name: 'Chapter 9', path: 'chapter9.mp3'},
-      { name: 'Chapter 10', path: 'chapter10.mp3'}
+      { name: 'Chapter 3', path: 'chapter3.mp3' },
+      { name: 'Chapter 4', path: 'chapter4.mp3' },
+      { name: 'Chapter 5', path: 'chapter5.mp3' },
+      { name: 'Chapter 6', path: 'chapter6.mp3' },
+      { name: 'Chapter 7', path: 'chapter7.mp3' },
+      { name: 'Chapter 8', path: 'chapter8.mp3' },
+      { name: 'Chapter 9', path: 'chapter9.mp3' },
+      { name: 'Chapter 10', path: 'chapter10.mp3' }
       // Add other chapters as needed
     ];
   }
@@ -55,7 +57,12 @@ export class AudioBookPage implements OnInit {
     await this.preloadAudio(audio);
     const path = `assets/sounds/${audio.path}`
     this.currentAudioPath = path; // Update currentAudioPath
+    await this.audioPlayer.nativeElement.onloadedmetadata;
+    // Get duration
+
     try {
+      this.audioDuration = this.audioPlayer.nativeElement.duration;
+      console.log('Audio duration:', this.audioDuration);
       // await NativeAudio.play({ assetId: audio.path }); // Use audio path
       console.log('Audio played successfully');
     } catch (error) {
