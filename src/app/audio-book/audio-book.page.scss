@@ -5,11 +5,16 @@ ion-content {
   justify-content: center;
   align-items: center;
   height: 100vh; /* chiều cao tương đương với viewport height */
+  position: relative; 
 }
 
 .audio {
+  position: sticky;
+  top: 0;
+  // background-color: white; /* Điều này giúp phần tử audio hiển thị đúng khi scroll */
+  z-index: 1; /* Đảm bảo phần tử audio ở trên cùng */
   text-align: center;
-  // position: fixed;
+  padding: 6px; /* Tùy chỉnh giảm khoảng cách nếu cần thiết */
 }
 
 audio {
