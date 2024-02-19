@@ -1,13 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>audio-book</ion-title>
+    <ion-title>
+      Speech Recognition
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">audio-book</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-button (click)="startRecognition()" [disabled]="recording">Start Recognition</ion-button>
+  <ion-button (click)="stopRecognition()" [disabled]="!recording">Stop Recognition</ion-button>
+
+  <div *ngIf="recognizedText">
+    <h3>Recognized Text:</h3>
+    <p>{{ recognizedText }}</p>
+  </div>
 </ion-content>
