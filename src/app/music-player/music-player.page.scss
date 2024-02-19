@@ -11,7 +11,30 @@ ion-header {
   ion-title {
     color:  white; /* Đặt màu chữ cho ion-title */
 }
+ion-col {
+  .icon_music {
+    color: white;
+  }
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  .currentTime {
+    margin-left: 10px;
+    margin-top: 0px;
+  }
+  .totalDuration {
+    margin-right: 10px;
+    margin-top: 0px;
+  }
+  p {
+    font-size: 13px;
+  }
+  
+}
 .ion-text-center {
     color: white;
 }
+
   
