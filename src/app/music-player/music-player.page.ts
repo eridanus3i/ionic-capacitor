@@ -66,6 +66,7 @@ export class MusicPlayerPage implements OnInit {
   activeTrack: Track = { name: "", path: "" };
   player: Howl | undefined;
   isPlaying = false;
+  hiddenContent = false;
   progress = 0;
   public currentTime = "0:00"; // Current playback time
   public totalDuration = "0:00"; // Total duration of the track
@@ -101,6 +102,21 @@ export class MusicPlayerPage implements OnInit {
       this.player.play();
     }
   }
+  
+  trackBackward() {
+    const seek = this.player ? this.player.seek() : 0;
+    const newSeek = Math.max(seek - 2, 0); // Ensure seek time does not go below 0
+    this.player?.seek(newSeek);
+    this.updateProgress();
+  }
+  trackMoveUpard() {
+    const seek = this.player ? this.player.seek() : 0;
+    const newSeek = Math.max(seek + 2, 0); // Ensure seek time does not go below 0
+    this.player?.seek(newSeek);
+    this.updateProgress();
+  }
+
+  // tracking back 2s
 
   togglePlayer(pause: boolean) {
     if (!this.player) return;
@@ -155,6 +171,9 @@ export class MusicPlayerPage implements OnInit {
   forwardToLast() {
     //select the last track
     this.start(this.playlist[this.playlist.length - 1]);
+  }
+  OpenContentMenu() {
+    this.hiddenContent =!this.hiddenContent;
   }
 
 }
