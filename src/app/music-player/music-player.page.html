@@ -13,8 +13,15 @@
     <!-- Nội dung ảnh dưới ion-content danh sách -->
     <div class="image-content">
 
-      <img class="img_content" src="https://cdn.vn.alongwalk.info/wp-content/uploads/2023/04/01162405/image-488-hinh-anh-edm-dep-cuc-ngau-doc-dao-tao-an-tuong-rieng-168031584533285.jpg" alt="">
-      <span class="image-text">Nội dung Audio</span>
+      <img class="img_content"
+        src="https://cdn.vn.alongwalk.info/wp-content/uploads/2023/04/01162405/image-488-hinh-anh-edm-dep-cuc-ngau-doc-dao-tao-an-tuong-rieng-168031584533285.jpg"
+        alt="">
+      <ion-list *ngIf="activeTrack.audioArray">
+        <ion-item *ngFor="let paragraph of activeTrack.audioArray; let i = index"
+          [class.active-paragraph]="i === activeParagraphIndex">
+          <p>{{ paragraph.text }}</p>
+        </ion-item>
+      </ion-list>
     </div>
     <!-- Nội dung ảnh dư��i ion-content danh sách -->
   </div>
@@ -36,26 +43,10 @@
         {{ activeTrack.name }}
       </ion-col>
       <ion-col size="12">
-        <ion-range
-          #range
-          [(ngModel)]="progress"
-          size="small"
-          max="100"
-          color="success"
-          (touchend)="seek()"
-          (mouseup)="seek()"
-        >
-          <ion-icon
-            slot="start"
-            size="small"
-            name="musical-note"
-            class="icon_music"
-          ></ion-icon>
-          <ion-icon
-            slot="end"
-            name="musical-note"
-            class="icon_music"
-          ></ion-icon>
+        <ion-range #range [(ngModel)]="progress" size="small" max="100" color="success" (touchend)="seek()"
+          (mouseup)="seek()">
+          <ion-icon slot="start" size="small" name="musical-note" class="icon_music"></ion-icon>
+          <ion-icon slot="end" name="musical-note" class="icon_music"></ion-icon>
         </ion-range>
       </ion-col>
       <ion-col>
@@ -75,21 +66,11 @@
         <ion-button fill="clear" (click)="trackBackward()">
           <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
         </ion-button>
-        <ion-button
-          fill="clear"
-          (click)="togglePlayer(false)"
-          *ngIf="!isPlaying"
-          class="stop_pause_button"
-        >
+        <ion-button fill="clear" (click)="togglePlayer(false)" *ngIf="!isPlaying" class="stop_pause_button">
           <ion-icon slot="icon-only" name="play-outline"></ion-icon>
         </ion-button>
 
-        <ion-button
-          fill="clear"
-          (click)="togglePlayer(true)"
-          *ngIf="isPlaying"
-          class="stop_pause_button"
-        >
+        <ion-button fill="clear" (click)="togglePlayer(true)" *ngIf="isPlaying" class="stop_pause_button">
           <ion-icon slot="icon-only" name="pause-outline"></ion-icon>
         </ion-button>
         <ion-button fill="clear" (click)="trackMoveUpard()">
@@ -116,14 +97,8 @@
           <span>Chương</span>
         </div>
         <div class="restart-button-container">
-          <ion-button (click)="speechUp()" 
-            fill="clear"
-            class="footer_button"
-          >
-            <ion-icon
-              slot="icon-only"
-              name="play-skip-forward-outline"
-            ></ion-icon>
+          <ion-button (click)="speechUp()" fill="clear" class="footer_button">
+            <ion-icon slot="icon-only" name="play-skip-forward-outline"></ion-icon>
           </ion-button>
           <span>Tốc độ</span>
         </div>

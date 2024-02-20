@@ -68,6 +68,7 @@ And so, dear children, remember the story of Sam the seed, who dared to dream an
         totalDuration += duration;
       });
     }
+    console.log('audioFiles', this.audioArray);
     const blob = await this.audioService.concatenateAudio(audioFiles);
     console.log(blob);
     const url = window.URL.createObjectURL(blob);

@@ -6,6 +6,7 @@ import { IonRange } from "@ionic/angular";
 export interface Track {
   name: string;
   path: string;
+  audioArray?: any[];
 }
 
 @Component({
@@ -60,10 +61,57 @@ export class MusicPlayerPage implements OnInit {
     {
       name: "Chapter 10",
       path: "./assets/sounds/chapter10.mp3",
+    },
+    {
+      name: "concatenated",
+      path: "./assets/sounds/concatenated.mp3",
+      audioArray: [
+        {
+          "text": "Once upon a time, in a lush and vibrant meadow, there lived a tiny seed named Sam",
+          "start": 0,
+          "end": 5.016
+        },
+        {
+          "text": " Sam was nestled snugly in the rich soil, surrounded by tall grass and colorful flowers",
+          "start": 5.016,
+          "end": 10.440000000000001
+        },
+        {
+          "text": " Sam dreamed of adventure beyond the confines of the meadow, but as a seed, it seemed impossible",
+          "start": 10.440000000000001,
+          "end": 16.32
+        },
+        {
+          "text": "\n\nOne sunny morning, a gentle breeze whispered through the meadow, carrying Sam's wish to the wise old oak tree nearby",
+          "start": 16.32,
+          "end": 23.544
+        },
+        {
+          "text": " The oak tree chuckled softly and rustled its leaves in amusement",
+          "start": 23.544,
+          "end": 27.192
+        },
+        {
+          "text": " \"Ah, little seed,\" the oak tree said, \"Adventure is not just for the brave and bold",
+          "start": 27.192,
+          "end": 32.184
+        },
+        {
+          "text": " It's for those who dare to dream",
+          "start": 32.184,
+          "end": 33.912
+        },
+        {
+          "text": "\"",
+          "start": 33.912,
+          "end": 34.464
+        }
+      ]
     }
   ];
 
-  activeTrack: Track = { name: "", path: "" };
+  activeParagraphIndex: number | null = null;
+  activeTrack: Track = { name: "", path: "", audioArray: [] };
   player: Howl | undefined;
   isPlaying = false;
   hiddenContent = false;
@@ -102,7 +150,7 @@ export class MusicPlayerPage implements OnInit {
       this.player.play();
     }
   }
-  
+
   trackBackward() {
     const seek = this.player ? this.player.seek() : 0;
     const newSeek = Math.max(seek - 2, 0); // Ensure seek time does not go below 0
@@ -151,7 +199,17 @@ export class MusicPlayerPage implements OnInit {
     this.currentTime = this.formatTime(Math.round(seek)); // Format current time
     this.totalDuration = this.formatTime(Math.round(this.player?.duration() || 0)); // Format total duration
     // console.log("updateProgress", this.progress, this.currentTime, this.totalDuration);
-    
+    console.log('seek', seek);
+    if (this.activeTrack.audioArray) {
+      for (let i = 0; i < this.activeTrack.audioArray.length; i++) {
+        const audio = this.activeTrack.audioArray[i];
+        if (seek >= audio.start && seek <= audio.end) {
+          this.activeParagraphIndex = i;
+          break;
+        }
+      }
+    }
+
     if (this.isPlaying) {
       requestAnimationFrame(() => this.updateProgress());
     }
@@ -173,11 +231,11 @@ export class MusicPlayerPage implements OnInit {
     this.start(this.playlist[this.playlist.length - 1]);
   }
   OpenContentMenu() {
-    this.hiddenContent =!this.hiddenContent;
+    this.hiddenContent = !this.hiddenContent;
   }
   speechUp() {
-    if(!this.player) {
-      return 
+    if (!this.player) {
+      return
     }
     this.player.rate(2)
   }
