@@ -1,13 +1,15 @@
 <ion-header >
   <ion-toolbar >
     <ion-title> Ionic Audio Player </ion-title>
-    <ion-button>
-      <ion-icon name="menu-outline"></ion-icon>
-    </ion-button>
+    <ion-buttons slot="end" (click)="OpenContentMenu()"  >
+      <ion-button>
+        <ion-icon name="menu-outline" class="button_List_Content"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="black-background">
+<ion-content class="black-background" *ngIf="hiddenContent">
   <ion-list>
     <ion-item button *ngFor="let track of playlist" (click)="start(track)">
       <ion-label [color]="track == activeTrack ? 'success' : 'dark'">
@@ -39,22 +41,23 @@
       </ion-col>
       <ion-col>
         <div class="timeline">
-   
             <p class="currentTime">{{currentTime}}</p>
             <p class="totalDuration">{{totalDuration}}</p>
-        
         </div>
       </ion-col>
-      
       <ion-col size="12" class="ion-text-center">
-        <ion-button fill="clear" (click)="forwardToFirst()" >
+        <ion-button fill="clear" (click)="prev()" >
           <ion-icon slot="icon-only" name="play-skip-back-outline"></ion-icon>
         </ion-button>
-        <ion-button fill="clear" (click)="prev()" >
+        <!-- <ion-button fill="clear" (click)="prev()" >
           <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
-        </ion-button>
+        </ion-button>  -->
         <ion-button fill="clear" (click)="restart()" >
           <ion-icon slot="icon-only"  name="refresh-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="trackBackward()" >
+          <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
+
         </ion-button>
         <ion-button
           fill="clear"
@@ -71,10 +74,13 @@
         >
           <ion-icon slot="icon-only" name="pause-outline"></ion-icon>
         </ion-button>
-        <ion-button fill="clear" (click)="next()" >
-          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+        <ion-button fill="clear" (click)="trackMoveUpard()">
+          <ion-icon slot="icon-only" name="play-forward-outline"></ion-icon>
         </ion-button>
-        <ion-button fill="clear" (click)="forwardToLast()" >
+        <!-- <ion-button fill="clear" (click)="next()" >
+          <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+        </ion-button> -->
+        <ion-button fill="clear" (click)="next()" >
           <ion-icon
             slot="icon-only"
             name="play-skip-forward-outline"

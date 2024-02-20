@@ -5,9 +5,11 @@ ion-header {
   }
   
   ion-toolbar {
-    color: black; /* Đặt màu nền cho ion-toolbar bên trong ion-header */
+    color: black;
+   
+    // display: flex; /* Đặt màu nền cho ion-toolbar bên trong ion-header */
   }
-  
+
   ion-title {
     color:  white; /* Đặt màu chữ cho ion-title */
 }
@@ -32,6 +34,9 @@ ion-col {
     font-size: 13px;
   }
   
+}
+.button_List_Content {
+  color: white;
 }
 .ion-text-center {
     color: white;
