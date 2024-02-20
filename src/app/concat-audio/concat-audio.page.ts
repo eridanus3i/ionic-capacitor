@@ -25,11 +25,10 @@ export class ConcatAudioPage implements OnInit {
     //download the file
     const url = window.URL.createObjectURL(concatenatedAudioBlob);
     this.audioUrl = this.sanitizer.bypassSecurityTrustUrl(url);
-    //play the file
-    // var sound = new Howl({
-    //   src: [url]
-    // });
-    // sound.play();
+    var sound = new Howl({
+      src: [url]
+    });
+    sound.play();
 
   }
 

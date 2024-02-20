@@ -14,4 +14,10 @@
     <ion-textarea rows="5" placeholder="Enter text to speak" [(ngModel)]="textToSpeak"></ion-textarea>
   </ion-item>
   <button (click)="text2speech()">Speak</button>
+  <!-- Display paragraphs -->
+  <ion-list *ngIf="paragraphs.length > 0">
+    <ion-item *ngFor="let paragraph of paragraphs; let i = index" [class.active-paragraph]="i === activeParagraphIndex">
+      <p>{{ paragraph }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
