@@ -34,6 +34,7 @@
     "@ionic/angular": "^7.0.0",
     "@microsoft/fetch-event-source": "^2.0.1",
     "crunker": "^2.4.0",
+    "get-blob-duration": "^1.2.0",
     "howler": "^2.2.4",
     "ionicons": "^7.0.0",
     "openai": "^4.28.0",

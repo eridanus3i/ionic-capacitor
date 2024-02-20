@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'concat-audio',
     loadChildren: () => import('./concat-audio/concat-audio.module').then( m => m.ConcatAudioPageModule)
   },
+  {
+    path: 'text-to-speech',
+    loadChildren: () => import('./text-to-speech/text-to-speech.module').then( m => m.TextToSpeechPageModule)
+  },
 
 ];
 
