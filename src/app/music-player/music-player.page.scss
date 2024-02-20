@@ -35,8 +35,10 @@ ion-col {
   }
   .stop_pause_button {
     background-color: white;
-    border-radius: 60%;
+    width: auto;
+    height: auto;
     border: 10px solid rgba(219, 203, 202, 0.5); /* Sử dụng rgba để thiết lập màu với độ trong suốt */
+    border-radius: 60% !important;
   }
 }
 // .restart-button {
@@ -73,15 +75,38 @@ ion-col {
 }
 .background-image {
   position: relative;
-  height: 300px; /* Điều chỉnh chiều cao của ảnh dưới */
-  background: url("https://cdn.vn.alongwalk.info/wp-content/uploads/2023/04/01162405/image-488-hinh-anh-edm-dep-cuc-ngau-doc-dao-tao-an-tuong-rieng-168031584533285.jpg")
-    center center / cover no-repeat;
+  height: 400px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  background-color: rgba( 240, 255, 240, 1 );
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.7);;
+  border-radius: 5%;
+}
+
+
+.img_content {
+  max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của .background-image */
+  max-height: 100%;
+  border-radius: 0 0 5% 5% ; /* Đảm bảo ảnh không vượt quá chiều cao của .background-image */
 }
 .image-content {
+  width: 250px;
+  height: 3000px;
+  // background-color: yellow;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-text {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  font-size: 24px;
+  padding: 10px;
+  // border-radius: 0 0 5% 5%;
 }
