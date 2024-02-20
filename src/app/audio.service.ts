@@ -4,15 +4,19 @@ import Crunker from 'crunker';
   providedIn: 'root'
 })
 export class AudioService {
-  constructor() { }
-  async concatenateAudio(audioFiles: string[]): Promise<void> {
+  async concatenateAudio(audioFiles: string[]): Promise<Blob> {
     const crunker = new Crunker();
-    crunker.fetchAudio(...audioFiles).then(buffers => {
-      return crunker.concatAudio(buffers);
-    }).then((concate) => {
-      return crunker.export(concate, 'audio/mp3');
-    }).then((output) => {
-      crunker.download(output.blob);
+    return new Promise<Blob>((resolve, reject) => {
+      crunker.fetchAudio(...audioFiles).then(buffers => {
+        return crunker.concatAudio(buffers);
+      }).then((concate) => {
+        return crunker.export(concate, 'audio/mp3');
+      }).then((output) => {
+        // crunker.download(output.blob);
+        resolve(output.blob);
+      }).catch((error) => {
+        reject(error);
+      });
     });
   }
 }

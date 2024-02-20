@@ -19,8 +19,17 @@ export class ConcatAudioPage implements OnInit {
   }
 
   async concatenateAudioFiles() {
-    const audioFiles = ['assets/sounds/chapter1.mp3', 'assets/sounds/chapter2.mp3'];
+    const audioFiles = ['assets/sounds/chapter1.mp3', 'assets/sounds/chapter2.mp3', 'assets/sounds/chapter3.mp3', 'assets/sounds/chapter4.mp3'];
     const concatenatedAudioBlob = await this.audioService.concatenateAudio(audioFiles);
+    console.log(concatenatedAudioBlob);
+    //download the file
+    const url = window.URL.createObjectURL(concatenatedAudioBlob);
+    this.audioUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+    //play the file
+    // var sound = new Howl({
+    //   src: [url]
+    // });
+    // sound.play();
 
   }
 
