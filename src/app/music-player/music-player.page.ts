@@ -115,6 +115,7 @@ export class MusicPlayerPage implements OnInit {
   player: Howl | undefined;
   isPlaying = false;
   hiddenContent = false;
+  selectedSpeechRate: number = 1;
   progress = 0;
   public currentTime = "0:00"; // Current playback time
   public totalDuration = "0:00"; // Total duration of the track
@@ -237,7 +238,8 @@ export class MusicPlayerPage implements OnInit {
     if (!this.player) {
       return
     }
-    this.player.rate(2)
+    console.log(this.selectedSpeechRate);
+    this.player.rate(this.selectedSpeechRate)
   }
 
 }
