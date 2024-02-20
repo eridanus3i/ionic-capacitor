@@ -175,5 +175,11 @@ export class MusicPlayerPage implements OnInit {
   OpenContentMenu() {
     this.hiddenContent =!this.hiddenContent;
   }
+  speechUp() {
+    if(!this.player) {
+      return 
+    }
+    this.player.rate(2)
+  }
 
 }

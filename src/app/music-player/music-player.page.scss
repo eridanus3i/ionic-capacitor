@@ -38,19 +38,10 @@ ion-col {
     width: auto;
     height: auto;
     border: 10px solid rgba(219, 203, 202, 0.5); /* Sử dụng rgba để thiết lập màu với độ trong suốt */
-    border-radius: 60% !important;
+    border-radius: 90% !important;
   }
 }
-// .restart-button {
-//   background-color: white;
-//   border-radius: 50%; /* Để button trở thành hình tròn */
-//   border: 2px solid #dbcbca; /* Màu viền */
-//   padding: 10px; /* Điều chỉnh padding theo nhu cầu */
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-/* Màu chữ cho nút Restart */
+
 .restart-button-container span {
   color: white;
   margin-left: 5px;
