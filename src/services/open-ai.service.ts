@@ -25,7 +25,7 @@ export class OpenAiService {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: "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",
+      apiKey: "",
       dangerouslyAllowBrowser: true
     });
   }
