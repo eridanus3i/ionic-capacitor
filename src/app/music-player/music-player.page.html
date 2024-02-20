@@ -1,14 +1,19 @@
-<ion-header >
-  <ion-toolbar >
+<ion-header>
+  <ion-toolbar>
     <ion-title> Ionic Audio Player </ion-title>
-    <ion-buttons slot="end" (click)="OpenContentMenu()"  >
+    <ion-buttons slot="end" (click)="OpenContentMenu()">
       <ion-button>
         <ion-icon name="menu-outline" class="button_List_Content"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+<ion-content>
+  <div class="background-image">
+    <!-- Nội dung ảnh dưới ion-content danh sách -->
+    <div class="image-content">hello</div>
+  </div>
+</ion-content>
 <ion-content class="black-background" *ngIf="hiddenContent">
   <ion-list>
     <ion-item button *ngFor="let track of playlist" (click)="start(track)">
@@ -35,34 +40,41 @@
           (touchend)="seek()"
           (mouseup)="seek()"
         >
-          <ion-icon slot="start" size="small" name="musical-note" class="icon_music"></ion-icon>
-          <ion-icon slot="end" name="musical-note" class="icon_music"></ion-icon>
+          <ion-icon
+            slot="start"
+            size="small"
+            name="musical-note"
+            class="icon_music"
+          ></ion-icon>
+          <ion-icon
+            slot="end"
+            name="musical-note"
+            class="icon_music"
+          ></ion-icon>
         </ion-range>
       </ion-col>
       <ion-col>
         <div class="timeline">
-            <p class="currentTime">{{currentTime}}</p>
-            <p class="totalDuration">{{totalDuration}}</p>
+          <p class="currentTime">{{currentTime}}</p>
+          <p class="totalDuration">{{totalDuration}}</p>
         </div>
       </ion-col>
       <ion-col size="12" class="ion-text-center">
-        <ion-button fill="clear" (click)="prev()" >
-          <ion-icon slot="icon-only" name="play-skip-back-outline"></ion-icon>
+        <ion-button fill="clear" (click)="prev()">
+          <ion-icon slot="icon-only" name="play-skip-back"></ion-icon>
         </ion-button>
         <!-- <ion-button fill="clear" (click)="prev()" >
           <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
         </ion-button>  -->
-        <ion-button fill="clear" (click)="restart()" >
-          <ion-icon slot="icon-only"  name="refresh-circle-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="trackBackward()" >
-          <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
 
+        <ion-button fill="clear" (click)="trackBackward()">
+          <ion-icon slot="icon-only" name="play-back-outline"></ion-icon>
         </ion-button>
         <ion-button
           fill="clear"
           (click)="togglePlayer(false)"
           *ngIf="!isPlaying"
+          class="stop_pause_button"
         >
           <ion-icon slot="icon-only" name="play-outline"></ion-icon>
         </ion-button>
@@ -71,6 +83,7 @@
           fill="clear"
           (click)="togglePlayer(true)"
           *ngIf="isPlaying"
+          class="stop_pause_button"
         >
           <ion-icon slot="icon-only" name="pause-outline"></ion-icon>
         </ion-button>
@@ -80,12 +93,35 @@
         <!-- <ion-button fill="clear" (click)="next()" >
           <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
         </ion-button> -->
-        <ion-button fill="clear" (click)="next()" >
-          <ion-icon
-            slot="icon-only"
-            name="play-skip-forward-outline"
-          ></ion-icon>
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon slot="icon-only" name="play-skip-forward"></ion-icon>
         </ion-button>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center_end">
+        <div class="restart-button-container">
+          <ion-button fill="clear" (click)="restart()" class="footer_button">
+            <ion-icon slot="icon-only" name="refresh-circle-outline"></ion-icon>
+          </ion-button>
+          <span>Restart</span>
+        </div>
+        <div class="restart-button-container">
+          <ion-button fill="clear" (click)="restart()" class="footer_button">
+            <ion-icon slot="icon-only" name="list-outline"></ion-icon>
+          </ion-button>
+          <span>Chương</span>
+        </div>
+        <div class="restart-button-container">
+          <ion-button
+            fill="clear"
+            class="footer_button"
+          >
+            <ion-icon
+              slot="icon-only"
+              name="play-skip-forward-outline"
+            ></ion-icon>
+          </ion-button>
+          <span>Tốc độ</span>
+        </div>
       </ion-col>
     </ion-row>
   </ion-toolbar>
