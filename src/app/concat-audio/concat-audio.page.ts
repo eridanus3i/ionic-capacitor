@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-declare var FFmpeg: any;
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { AudioService } from '../audio.service';
+import { Howl, Howler } from "howler";
+
 
 @Component({
   selector: 'app-concat-audio',
@@ -8,10 +11,17 @@ declare var FFmpeg: any;
 })
 export class ConcatAudioPage implements OnInit {
 
-  constructor() { }
+  constructor(private audioService: AudioService, private sanitizer: DomSanitizer) {}
+  audioUrl: SafeUrl | undefined;
 
   ngOnInit() {
-    const ffmpeg = FFmpeg.createFFmpeg({ log: true });
+    this.concatenateAudioFiles();
+  }
+
+  async concatenateAudioFiles() {
+    const audioFiles = ['assets/sounds/chapter1.mp3', 'assets/sounds/chapter2.mp3'];
+    const concatenatedAudioBlob = await this.audioService.concatenateAudio(audioFiles);
+
   }
 
 }
