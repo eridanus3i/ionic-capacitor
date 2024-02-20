@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'music-player',
     loadChildren: () => import('./music-player/music-player.module').then( m => m.MusicPlayerPageModule)
+  },  {
+    path: 'concat-audio',
+    loadChildren: () => import('./concat-audio/concat-audio.module').then( m => m.ConcatAudioPageModule)
   },
+
 ];
 
 @NgModule({
