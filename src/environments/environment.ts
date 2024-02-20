@@ -2,7 +2,9 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
+  openAIToken: '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',
   production: false
 };
 
