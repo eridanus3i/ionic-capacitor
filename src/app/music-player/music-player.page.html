@@ -96,10 +96,19 @@
           </ion-button>
           <span>Chương</span>
         </div>
-        <div class="restart-button-container">
-          <ion-button (click)="speechUp()" fill="clear" class="footer_button">
-            <ion-icon slot="icon-only" name="play-skip-forward-outline"></ion-icon>
-          </ion-button>
+        <div class="restart-button-container">  
+          <ion-button  fill="clear" class="footer_button">
+            <ion-select [(ngModel)]="selectedSpeechRate" placeholder="" (ionChange)="speechUp()">
+              <ion-select-option value="0.25">0.25x</ion-select-option>
+              <ion-select-option value="0.5">0.5x</ion-select-option>
+              <ion-select-option value="0.75">0.75x</ion-select-option>
+              <ion-select-option value="1.0">1.0x</ion-select-option>
+              <ion-select-option value="1.25">1.25x</ion-select-option>
+              <ion-select-option value="1.5">1.5x</ion-select-option>
+              <ion-select-option value="1.75">1.75x</ion-select-option>
+              <!-- Thêm các giá trị và nhãn tương ứng cho kháxc nếu cần -->
+            </ion-select>
+            </ion-button>
           <span>Tốc độ</span>
         </div>
       </ion-col>
