@@ -138,7 +138,6 @@ export class MusicPlayerPage implements OnInit {
       onplay: () => {
         console.log("onplay");
         this.isPlaying = true;
-        this.hiddenContent = !this.hiddenContent;
         this.activeTrack = track;
         this.updateProgress();
       },
@@ -149,6 +148,7 @@ export class MusicPlayerPage implements OnInit {
       },
     });
     this.player.play();
+    this.hiddenContent = !this.hiddenContent;
   }
 
   restart() {
