@@ -16,8 +16,8 @@
       <img class="img_content"
         src="https://cdn.vn.alongwalk.info/wp-content/uploads/2023/04/01162405/image-488-hinh-anh-edm-dep-cuc-ngau-doc-dao-tao-an-tuong-rieng-168031584533285.jpg"
         alt="">
-      <ion-list *ngIf="activeTrack.audioArray">
-        <ion-item *ngFor="let paragraph of activeTrack.audioArray; let i = index"
+        <ion-list #scrollableList class="scrollable-list" *ngIf="activeTrack.audioArray">
+          <ion-item *ngFor="let paragraph of activeTrack.audioArray; let i = index"
           [class.active-paragraph]="i === activeParagraphIndex">
           <p>{{ paragraph.text }}</p>
         </ion-item>

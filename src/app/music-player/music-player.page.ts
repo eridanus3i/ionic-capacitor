@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Howl, Howler } from "howler";
-import { IonRange } from "@ionic/angular";
+import { IonRange, IonContent } from "@ionic/angular";
 
 
 export interface Track {
@@ -15,10 +15,15 @@ export interface Track {
   styleUrls: ['./music-player.page.scss'],
 })
 export class MusicPlayerPage implements OnInit {
-
   constructor() { }
+  @ViewChild(IonContent, { static: false })
+  content!: IonContent;
+  @ViewChild('scrollList', { static: false })
+  scrollList!: ElementRef;
+
 
   ngOnInit() {
+
   }
 
   playlist: Track[] = [
@@ -200,12 +205,15 @@ export class MusicPlayerPage implements OnInit {
     this.currentTime = this.formatTime(Math.round(seek)); // Format current time
     this.totalDuration = this.formatTime(Math.round(this.player?.duration() || 0)); // Format total duration
     // console.log("updateProgress", this.progress, this.currentTime, this.totalDuration);
-    console.log('seek', seek);
     if (this.activeTrack.audioArray) {
       for (let i = 0; i < this.activeTrack.audioArray.length; i++) {
         const audio = this.activeTrack.audioArray[i];
         if (seek >= audio.start && seek <= audio.end) {
+          if (this.activeParagraphIndex === i) {
+            break;
+          }
           this.activeParagraphIndex = i;
+          this.scrolltoParagraph(i); // Call scrollToParagraph when active paragraph changes
           break;
         }
       }
@@ -241,5 +249,13 @@ export class MusicPlayerPage implements OnInit {
     console.log(this.selectedSpeechRate);
     this.player.rate(this.selectedSpeechRate)
   }
+
+  scrolltoParagraph(index: number) {
+    this.activeParagraphIndex = index;
+    console.log("scrolltoParagraph", this.scrollList);
+    const element = this.scrollList.nativeElement.children[index];
+    this.content.scrollToPoint(0, element.offsetTop, 500);
+  }
+
 
 }
