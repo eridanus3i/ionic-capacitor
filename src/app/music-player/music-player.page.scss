@@ -71,25 +71,27 @@ ion-col {
   margin-left: auto;
   margin-right: auto;
   margin-top: 15%;
-  background-color: rgba( 240, 255, 240, 1 );
+  background-color: #888888;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.7);;
   border-radius: 5%;
+  display: block;
+  opacity: 0.6;
 }
-
-
 .img_content {
-  max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của .background-image */
-  max-height: 100%;
+  width: 100%;
+  height: auto;
   border-radius: 0 0 5% 5% ; /* Đảm bảo ảnh không vượt quá chiều cao của .background-image */
 }
 .image-content {
   width: 250px;
-  height: 3000px;
+  height: auto;
   // background-color: yellow;
   margin-left: auto;
   margin-right: auto;
+  display: block;
+  opacity: 0.7;
 }
 .image-text {
   position: absolute;
@@ -105,4 +107,9 @@ ion-col {
 .active-paragraph {
   font-weight: bold;
   color: red;
+}
+.list_textAudio {
+  white-space: wrap; /* Ngăn chặn văn bản từ việc xuống dòng */
+  // overflow: hidden; /* Ẩn phần văn bản vượt quá kích thước của phần tử */
+  text-overflow: ellipsis;
 }
