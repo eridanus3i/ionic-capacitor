@@ -1,6 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title> Ionic Audio Player </ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content scroll-y="false">
@@ -12,6 +22,8 @@
         src="https://www.nxbtre.com.vn/Images/Book/copy_19_nxbtre_full_20342017_033410.jpg"
         alt=""
       />
+    </div>
+    <div class="box_text">
       <!-- <ion-list
         #scrollableList
         class="scrollable-list"
@@ -21,14 +33,13 @@
           *ngFor="let paragraph of activeTrack.audioArray; let i = index"
           [class.active-paragraph]="i === activeParagraphIndex"
         >
-          <p>{{ paragraph.text }}</p>
-        </ion-item>
-      </ion-list> -->
+      </ion-item>
+      
+    </ion-list> -->
+      <div class="box_content">
+        <span class="text_sub">{{ activeParagraphText }}</span>
+      </div>
     </div>
-    <!-- <div class="title_audio">
-      <span> {{ activeTrack.name }} </span>
-    </div> -->
-    <!-- Nội dung ảnh dư��i ion-content danh sách -->
   </div>
 </ion-content>
 <ion-content class="black-background" *ngIf="hiddenContent">
@@ -44,8 +55,12 @@
 <ion-footer *ngIf="activeTrack">
   <ion-toolbar>
     <ion-row>
-      <ion-col size="12" class="ion-text-center">
-        {{ activeTrack.name }}
+      <ion-col
+        size="12"
+        class="ion-text-center"
+        style="display: flex; align-items: center; justify-content: center"
+      >
+        {{activeTrack.name.toLocaleUpperCase()}}
       </ion-col>
       <ion-col size="12">
         <ion-range
@@ -155,6 +170,16 @@
             </ion-select>
           </ion-button>
           <span>Tốc độ</span>
+        </div>
+        <div class="restart-button-container">
+          <ion-button fill="clear" class="footer_button">
+            <div class="restart-button-container">
+              <ion-button fill="clear" class="footer_button">
+                <ion-icon name="folder-outline"></ion-icon>
+              </ion-button>
+              <span>File đính kèm</span>
+            </div>
+          </ion-button>
         </div>
       </ion-col>
     </ion-row>
