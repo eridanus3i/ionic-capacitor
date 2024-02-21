@@ -1,0 +1,40 @@
+.text-select {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+ion-content {
+    -webkit-touch-callout: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+* {
+    -webkit-touch-callout: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+
+html.plt-mobile ion-app {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.selection-rectangle {
+    position: absolute;
+    border: 2px solid red; /* Adjust the border style as needed */
+    background-color: blue; /* Adjust the background color as needed */
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 9999; /* Ensure the rectangle appears on top of other content */
+  }
+  

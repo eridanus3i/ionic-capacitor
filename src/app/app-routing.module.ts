@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'text-to-speech',
     loadChildren: () => import('./text-to-speech/text-to-speech.module').then( m => m.TextToSpeechPageModule)
   },
+  {
+    path: 'create-book',
+    loadChildren: () => import('./create-book/create-book.module').then( m => m.CreateBookPageModule)
+  },
 
 ];
 
