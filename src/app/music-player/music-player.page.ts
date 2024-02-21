@@ -252,9 +252,9 @@ export class MusicPlayerPage implements OnInit {
 
   scrolltoParagraph(index: number) {
     this.activeParagraphIndex = index;
-    console.log("scrolltoParagraph", this.scrollList);
-    const element = this.scrollList.nativeElement.children[index];
-    this.content.scrollToPoint(0, element.offsetTop, 500);
+    // console.log("scrolltoParagraph", this.scrollList);
+    // const element = this.scrollList.nativeElement.children[index];
+    // this.content.scrollToPoint(0, element.offsetTop, 500);
   }
 
 
