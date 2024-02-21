@@ -242,3 +242,11 @@ html {
    */
   --ion-dynamic-font: var(--ion-default-dynamic-font);
 }
+
+
+.text-select {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
