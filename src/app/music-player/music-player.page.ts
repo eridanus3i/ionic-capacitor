@@ -196,6 +196,20 @@ export class MusicPlayerPage implements OnInit {
     if (!duration) return;
     const seekTime = (duration * newValue) / 100;
     this.player?.seek(seekTime);
+    //scroll to paragraph
+    if (this.activeTrack.audioArray) {
+      for (let i = 0; i < this.activeTrack.audioArray.length; i++) {
+        const audio = this.activeTrack.audioArray[i];
+        if (seekTime >= audio.start && seekTime <= audio.end) {
+          if (this.activeParagraphIndex === i) {
+            break;
+          }
+          this.activeParagraphIndex = i;
+          this.scrolltoParagraph(i); // Call scrollToParagraph when active paragraph changes
+          break;
+        }
+      }
+    }
   }
 
   updateProgress() {
