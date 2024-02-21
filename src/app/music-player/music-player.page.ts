@@ -16,10 +16,10 @@ export interface Track {
 })
 export class MusicPlayerPage implements OnInit {
   constructor() { }
-  @ViewChild(IonContent, { static: false })
-  content!: IonContent;
-  @ViewChild('scrollList', { static: false })
-  scrollList!: ElementRef;
+  @ViewChild(IonContent, { read: IonContent })
+  myContent!: IonContent;
+
+  @ViewChild('scrollableList') scrollableList: any;
 
 
   ngOnInit() {
@@ -252,7 +252,17 @@ export class MusicPlayerPage implements OnInit {
 
   scrolltoParagraph(index: number) {
     this.activeParagraphIndex = index;
-    // console.log("scrolltoParagraph", this.scrollList);
+    
+    console.log("scrolltoParagraph", this.scrollableList);
+    console.log("scrolltoParagraph", this.scrollableList.el);
+    const container = this.scrollableList.el;
+    //query
+    const activeItem = container.querySelector('.active-paragraph');
+    console.log("scrolltoParagraph", activeItem);
+    //scroll to activeItem
+    if (activeItem) {
+      activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     // const element = this.scrollList.nativeElement.children[index];
     // this.content.scrollToPoint(0, element.offsetTop, 500);
   }
