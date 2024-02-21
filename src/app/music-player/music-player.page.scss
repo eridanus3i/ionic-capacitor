@@ -35,13 +35,15 @@ ion-col {
   }
   .stop_pause_button {
     background-color: white;
-    width: auto;
-    height: auto;
-    border: 10px solid rgba(219, 203, 202, 0.5); /* Sử dụng rgba để thiết lập màu với độ trong suốt */
-    border-radius: 90% !important;
+    width: 80px;
+    height: 80px;
+    border: 15px solid rgba(219, 203, 202, 0.5); /* Sử dụng rgba để thiết lập màu với độ trong suốt */
+    border-radius: 50%;
   }
 }
-
+.stop_pause {
+  color: black;
+}
 .restart-button-container span {
   color: white;
   margin-left: 5px;
@@ -66,32 +68,45 @@ ion-col {
 }
 .background-image {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 400px;
   width: 400px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15%;
-  background-color: #888888;
+  background-color: rgba(102, 51, 51, 0.5);
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.7);;
+  border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 5%;
   display: block;
-  opacity: 0.6;
+  z-index: 2;
 }
 .img_content {
-  width: 100%;
-  height: auto;
-  border-radius: 0 0 5% 5% ; /* Đảm bảo ảnh không vượt quá chiều cao của .background-image */
+  width: 60%; /* Assuming you want the image to take the full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline styling */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 5%;
+  z-index: 1;
 }
 .image-content {
-  width: 250px;
+  position: relative;
+  width: 300px;
   height: auto;
   // background-color: yellow;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  opacity: 0.7;
+  // opacity: 0.5;
+  margin-top: 170px;
+  // margin-bottom: auto;
 }
 .image-text {
   position: absolute;
@@ -101,15 +116,52 @@ ion-col {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 10px;
-  // border-radius: 0 0 5% 5%;
+  border-radius: 5%;
 }
 
 .active-paragraph {
   font-weight: bold;
-  color: red;
+  font-size: 13px;
+  color: forestgreen;
 }
 
 .scrollable-list {
   max-height: 250px;
   overflow-y: auto;
+  background-color: red;
+}
+.box_text {
+  // position: relative;
+  // padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  // margin-top: 20rem;
+  width: 100%;
+  height: 100%;
+  // background-color: red;
+  // z-index: 3; /* Set an even higher z-index for the text sub-container */
+  box-shadow: none;
+}
+.text_sub {
+  margin-top: 100px;
+  display: flex;
+  font-size: 14px;
+  text-align: center !important; 
+  align-items: center !important;
+  font-weight: bold;
+  // padding: 5px;
+}
+.box_content {
+  margin-bottom: 0px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 50%;
+  // background-color: blue;
+  margin-top: 80%;
+
+  // text-align: justify;
 }

@@ -116,6 +116,7 @@ export class MusicPlayerPage implements OnInit {
   ];
 
   activeParagraphIndex: number | null = null;
+  activeParagraphText: string | undefined;
   activeTrack: Track = { name: "", path: "", audioArray: [] };
   player: Howl | undefined;
   isPlaying = false;
@@ -148,6 +149,7 @@ export class MusicPlayerPage implements OnInit {
       },
     });
     this.player.play();
+    this.hiddenContent = !this.hiddenContent;
   }
 
   restart() {
@@ -205,6 +207,7 @@ export class MusicPlayerPage implements OnInit {
             break;
           }
           this.activeParagraphIndex = i;
+
           this.scrolltoParagraph(i); // Call scrollToParagraph when active paragraph changes
           break;
         }
@@ -264,22 +267,39 @@ export class MusicPlayerPage implements OnInit {
     this.player.rate(this.selectedSpeechRate)
   }
 
+  // scrolltoParagraph(index: number) {
+  //   this.activeParagraphIndex = index;
+  //   if (this.activeTrack) {
+  //     const paragraphArray = this.activeTrack.audioArray
+  //     if (paragraphArray) {
+  //       const paragraph = paragraphArray[index];
+  //       console.log(paragraph.text);
+  //     }
+  //   }
+
+  //   console.log("scrolltoParagraph", this.scrollableList);
+  //   console.log("scrolltoParagraph", this.scrollableList.el);
+  //   const container = this.scrollableList.el;
+  //   //query
+  //   const activeItem = container.querySelector('.active-paragraph');
+  //   console.log("scrolltoParagraph", activeItem);
+  //   //scroll to activeItem
+  //   if (activeItem) {
+  //     activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  //   }
+  //   // const element = this.scrollList.nativeElement.children[index];
+  //   // this.content.scrollToPoint(0, element.offsetTop, 500);
+  // }
+
   scrolltoParagraph(index: number) {
     this.activeParagraphIndex = index;
-    
-    console.log("scrolltoParagraph", this.scrollableList);
-    console.log("scrolltoParagraph", this.scrollableList.el);
-    const container = this.scrollableList.el;
-    //query
-    const activeItem = container.querySelector('.active-paragraph');
-    console.log("scrolltoParagraph", activeItem);
-    //scroll to activeItem
-    if (activeItem) {
-      activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (this.activeTrack) {
+      const paragraphArray = this.activeTrack.audioArray
+      if (paragraphArray) {
+        const paragraph = paragraphArray[index];
+        console.log(paragraph.text);
+        this.activeParagraphText = paragraph.text;
+      }
     }
-    // const element = this.scrollList.nativeElement.children[index];
-    // this.content.scrollToPoint(0, element.offsetTop, 500);
   }
-
-
 }
