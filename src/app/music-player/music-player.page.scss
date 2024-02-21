@@ -108,8 +108,8 @@ ion-col {
   font-weight: bold;
   color: red;
 }
-.list_textAudio {
-  white-space: wrap; /* Ngăn chặn văn bản từ việc xuống dòng */
-  // overflow: hidden; /* Ẩn phần văn bản vượt quá kích thước của phần tử */
-  text-overflow: ellipsis;
+
+.scrollable-list {
+  max-height: 200px;
+  overflow-y: auto;
 }
