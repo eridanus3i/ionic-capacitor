@@ -13,7 +13,12 @@
 </ion-header>
 <ion-content>
 
+  <div #clickText>
+
+  </div>
+
   <div #selectableText (click)="handleSelection($event)">
+    <button (click)="showtheText()">Translate</button>
     <div #selectableText>
       <p class="text-select">The Adventures of Luna and Milo: The Enchanted Forest</p>
       <!-- <div #selectableParagraph class="selectable-paragraph">
