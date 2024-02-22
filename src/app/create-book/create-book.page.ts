@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
 // import { translate } from '@vitalets/google-translate-api';
 // import createHttpProxyAgent from 'http-proxy-agent';
 import { ModalController } from '@ionic/angular';
-import {OpenModalComponent } from '../open-modal/open-modal.component';
+import { OpenModalComponent } from '../open-modal/open-modal.component';
+
 
 @Component({
   selector: 'app-create-book',
@@ -13,22 +15,20 @@ export class CreateBookPage implements OnInit, AfterViewInit {
   @ViewChild('selectableText', { static: true })
   selectableText!: ElementRef;
   @ViewChild('selectableParagraph', { static: true }) selectableParagraph!: ElementRef;
+  @ViewChild('clickText', { static: true })
+  clickText!: ElementRef;
+  timer: any = null;
+  selectedRange: any;
+
 
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {
-    // const word = 'Hello';
-    // const newWord = document.createElement('span');
-    // newWord.textContent = word;
-    // newWord.style.color = 'red';
-    // newWord.style.backgroundColor = 'yellow';
-    // newWord.style.fontWeight = 'bold';
-    // //add new word to the paragraph
-    // console.log('this.selectableParagraph', this.selectableParagraph);
-    // this.selectableParagraph.nativeElement.appendChild(newWord);
+    this.timer = setInterval(this.getSelectedRange, 150);
   }
 
   ngAfterViewInit() {
+    // clearInterval(this.timer);
     // const paragraphString = `Once upon a time in a quaint little village nestled at the edge of a vast forest, there lived two best friends
     // named Luna and Milo. Luna was a spirited young girl with eyes as bright as the morning sun, and Milo was a
     // mischievous boy with a heart as wild as the forest itself. Together, they shared a bond stronger than the tallest
@@ -54,11 +54,41 @@ export class CreateBookPage implements OnInit, AfterViewInit {
     // }
   }
 
+  getSelectedRange = () => {
+    try {
+      if (window.getSelection) {
+        this.selectedRange = window.getSelection()?.getRangeAt(0);
+        console.log('selectedRange', this.selectedRange);
+      } else {
+        this.selectedRange = document.getSelection()?.getRangeAt(0);
+        console.log('selectedRange', this.selectedRange);
+      }
+    } catch (err) { }
+  };
+  showtheText() {
+    //add text true to clickText
+    this.clickText.nativeElement.textContent = this.selectedRange?.toString();
+    this.clickText.nativeElement.style.display = 'block';
+    this.clickText.nativeElement.style.color = 'red';
+    this.clickText.nativeElement.style.backgroundColor = 'yellow';
+  }
+
+
   async handleSelection(event: MouseEvent) {
-    console.log('handleSelection');
-    const selection = window.getSelection()?.getRangeAt(0); // Get the selection range
-    //get the selected text for  android
-    console.log('selection', selection);
+
+    let selection = null;
+    // console.log('sss', window.getSelection())
+    selection = window.getSelection()?.getRangeAt(0); // Get the selection range
+    // //get the selected text for  android
+    // console.log('selection', selection);
+    if (window.getSelection) {
+      selection = window.getSelection()?.getRangeAt(0);
+    } else if (typeof document.getSelection != "undefined") {
+      selection = document.getSelection()?.getRangeAt(0);
+      console.log('android');
+    }
+    console.log('handleSelection', selection);
+
     const selectedText = selection?.toString().trim(); // Get the selected text
     if (selectedText) {
       const rect = selection?.getBoundingClientRect(); // Get the position of the selected text
@@ -143,10 +173,9 @@ export class CreateBookPage implements OnInit, AfterViewInit {
   async openModal() {
     const modal = await this.modalController.create({
       component: OpenModalComponent,
-      // You can pass data to the modal using componentProps if needed
     });
     await modal.present();
   }
 
-  
+
 }
